@@ -3,9 +3,9 @@ import {eventsList, Eventz} from "@/initial_dashboard"
 
 export default function Home() {
   const listz = new eventsList();
-  const inputz: Eventz[] = JSON.parse(fs.readFileSync('data.json', 'utf-8'));
+  const inputz: { [key: string]: Eventz } = JSON.parse(fs.readFileSync('data.json', 'utf-8'));
   for (let index = 0; index < Object.keys(inputz).length; index++) {
-    listz.addEvent(new Eventz(inputz[Number(Object.keys(inputz)[index])].creatorAccount, inputz[Number(Object.keys(inputz)[index])].origin, inputz[Number(Object.keys(inputz)[index])].destination, inputz[Number(Object.keys(inputz)[index])].timeOfEvent));
+    listz.addEvent(new Eventz(inputz[Object.keys(inputz)[index]].creatorAccount, inputz[Object.keys(inputz)[index]].origin, inputz[Object.keys(inputz)[index]].destination, inputz[Object.keys(inputz)[index]].timeOfEvent));
   }
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
