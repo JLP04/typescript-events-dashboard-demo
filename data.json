@@ -1,0 +1,12 @@
+{"Item1": {
+    "creatorAccount": 123,
+    "origin": "New York, NY, United States",
+    "destination": "Ithaca, NY, United States",
+    "timeOfEvent": "2026-06-01T00:00:00.0000Z"
+},
+"Item2": {
+    "creatorAccount": 456,
+    "origin": "Ithaca, NY, United States",
+    "destination": "New York, NY, United States",
+    "timeOfEvent": "2026-06-30T12:00:05.6025Z"
+}}
