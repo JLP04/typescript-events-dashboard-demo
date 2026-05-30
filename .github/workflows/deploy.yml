@@ -37,6 +37,9 @@ jobs:
             - name: Install dependenices
               run: npm install
 
+            - name: Disable Next.js Telemetry
+              run: npm next telemetry disable
+
             - name: Setup Pages
               id: setup_pages
               uses: actions/configure-pages@v5
@@ -55,7 +58,7 @@ jobs:
             - name: Build with Next.js
               run: npm run build
               env:
-                PAGES_BASH_PATH: ${{ steps.setup_pages.outputs.base_path }}
+                PAGES_BASE_PATH: ${{ steps.setup_pages.outputs.base_path }}
 
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3
