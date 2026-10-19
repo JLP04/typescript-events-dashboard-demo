@@ -1,3 +1,5 @@
+import { io } from "next/cache";
+
 export class Eventz {
     timeCreated: Date;
     originCity: string;
@@ -17,7 +19,8 @@ export class Eventz {
         if (typeof(timeOfEvent) === 'string') {
             this.timeOfEvent = new Date(timeOfEvent);
         }
-        this.timeCreated = new Date();
+        this.timeCreated = new Date(0);
+        GetCurrentCreationTime().then((date) => this.timeCreated = date);
         const originLocs: string[] = origin.split(', ');
         const originCityz: string[] = originLocs[0].split(' ');
         for (const i in originCityz) {
@@ -50,6 +53,11 @@ export class Eventz {
         
         this.eventID = 0;
     }
+}
+
+export async function GetCurrentCreationTime() {
+    await io();
+    return new Date();
 }
 
 export class eventsList{
