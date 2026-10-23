@@ -1,5 +1,12 @@
 import fs from 'fs'
 import {eventsList, Eventz} from "@/initial_dashboard"
+import { Suspense } from 'react';
+import { io } from 'next/cache';
+
+async function GetCurrentTime() {
+    await io();
+    return <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">{"Time Now: ".concat((new Date).toString())}</p>;
+}
 
 export default function Home() {
   const listz = new eventsList();
@@ -20,21 +27,27 @@ export default function Home() {
           <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
             {"Number of Users: ".concat(listz.numberOfUsers().toString())}
           </p>
+          <Suspense>
           <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
             {"Number created on or after 5/30/26 UTC: ".concat(listz.numberCreatedOnOrAfter(new Date('2026-05-30T00:00:00.0000Z')).toString())}
           </p>
+          </Suspense>
+          <Suspense>
           <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
             {"Number created between 5/30/26 UTC and 6/1/26 UTC: ".concat(listz.numberCreatedInDateRange(new Date('2026-05-30T00:00:00.0000Z'), new Date('2026-06-01T00:00:00.0000Z')).toString())}
           </p>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            {"Time Now: ".concat((new Date).toString())}
-          </p>
+          </Suspense>
+          <Suspense>
+            <GetCurrentTime/>
+          </Suspense>
           <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
             {"Number of rides on or after 6/15/26 UTC: ".concat(listz.numberScheduledOnOrAfter(new Date('2026-06-15T00:00:00.0000Z')).toString())}
           </p>
+          <Suspense>
           <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
             {"Number of rides between 6/1/26 UTC and 7/1/26 UTC: ".concat(listz.numberCreatedInDateRange((new Date('2026-06-01T00:00:00.0000Z')), (new Date('2026-07-01T00:00:00.0000Z'))).toString())}
           </p>
+          </Suspense>
           <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
             {"Number from New York: ".concat(listz.numberFromCity("new york, ny, united states").toString())}
           </p>
