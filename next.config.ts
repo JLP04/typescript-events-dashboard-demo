@@ -8,8 +8,8 @@ const nextConfig: NextConfig = {
   },
   output: 'export',
   basePath: process.env.PAGES_BASE_PATH,
-  cacheComponents: true,
-  partialPrefetching: true,
+  // cacheComponents: true,
+  // partialPrefetching: true,
   turbopack: {
     rules: {
       "*.css": {
